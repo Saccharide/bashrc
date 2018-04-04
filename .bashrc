@@ -87,17 +87,34 @@ if [ "$color_prompt" = yes ]; then
 	}
 fi
 
-unset color_prompt force_color_prompt
-
 # If this is an xterm set the title to user@host:dir
-# User SHOULD ALWAYS BE RED!!!
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\342\234\227\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[01;31m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]\\$\[\e[0m\]"
-    ;;
-*)
-    ;;
-esac
+
+
+export color_prompt="yes"
+
+# Replacing the error mark with error code retrun by the program 
+export PROMPT_COMMAND=__prompt_command      # Func to gen PS1 after CMDs
+
+function __prompt_command(){
+        local EXIT="$?"
+                if [ "$color_prompt" = yes ]; then
+                        PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]$EXIT\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[01;31m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]\\$\[\e[0m\]"
+                else
+                        PS1='┌──[\u@\h]─[\w]\n└──╼ \$ '
+                fi
+}
+
+
+# Original color setting
+# case "$TERM" in
+# xterm*|rxvt*)
+#     EXIT=$?
+#     echo $EXIT
+#     PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\$EXIT\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[01;31m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]\\$\[\e[0m\]"
+#     ;;
+# *)
+#     ;;
+# esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
