@@ -130,7 +130,7 @@ fi
 
 # some more ls aliases
 alias ll='ls -halt'
-alias la='ls -halt'
+alias la='ls -la'
 alias l='ls -halt'
 alias dd='dd status=progress'
 alias _='sudo'

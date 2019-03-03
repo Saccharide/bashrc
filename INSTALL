@@ -1,0 +1,19 @@
+#!/bin/bash
+##################################################################################################
+# '''
+# // @Project      Installing bashrc 
+# // @Author       Saccharide
+# '''
+##################################################################################################
+
+# Check if vimrc and bashrc exists, and make backup of them before override
+if [ -f $HOME/.bashrc ]; then
+    echo "Backing up bashrc..."
+    mv $HOME/.bashrc .bashrc_backup
+fi
+if [ -f $HOME/.bash_profile ]; then
+    echo "Backing up bash_profile ..."
+    mv $HOME/.bashrc_profile .bashrc_profile_backup
+    cp .bashrc $HOME/.bash_profile
+fi
+cp .bashrc $HOME
