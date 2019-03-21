@@ -13,7 +13,7 @@ if [ -f $HOME/.bashrc ]; then
 fi
 if [ -f $HOME/.bash_profile ]; then
     echo "Backing up bash_profile ..."
-    mv $HOME/.bashrc_profile .bashrc_profile_backup
+    mv $HOME/.bash_profile $HOME/.bash_profile_backup
     cp .bashrc $HOME/.bash_profile
 fi
 cp .bashrc $HOME
