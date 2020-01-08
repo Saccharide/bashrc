@@ -181,3 +181,8 @@ else
 fi
 unset __conda_setup
 # <<< conda init <<<
+
+# Added a function to find certain file within the current directory
+function findfile(){
+    find `pwd` -type f -name "*.$1"
+}
