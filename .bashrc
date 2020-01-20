@@ -183,6 +183,17 @@ unset __conda_setup
 # <<< conda init <<<
 
 # Added a function to find certain file within the current directory
-function findfile(){
-    find `pwd` -type f -name "*.$1"
+function findf(){
+    if [[ -z $name ]]; then
+        echo "name cannot be empty."
+        exit 1
+    fi
+    find $(pwd) -iname "*$name*"
+}
+function gen(){
+    if [[ -z $1 ]]; then
+        echo "writeup file name cannot be empty."
+        exit 1
+    fi
+    echo -e "# $1\n## Author: **saccharide**\n\nTask\n\`\`\`\n\n\`\`\`\n\n## Approach\n\n## Flag\n\`\`" > "$1.md"
 }
