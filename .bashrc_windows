@@ -115,6 +115,30 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-function findfile(){
-    find `pwd` -type f -name "*.$1"
+# Added a function to find certain file within the current directory
+function findf(){
+    if [[ -z $name ]]; then
+        echo "name cannot be empty."
+        exit 1
+    fi
+    find $(pwd) -iname "*$name*"
 }
+function gen(){
+    if [[ -z $1 ]]; then
+        echo "writeup file name cannot be empty."
+        exit 1
+    fi
+    echo -e "# $1\n## Author: **saccharide**\n\nTask\n\`\`\`\n\n\`\`\`\n\n## Approach\n\n## Flag\n\`\`" > "$1.md"
+}
+
+# Windows function
+function start(){
+    /mnt/c/Windows/System32/cmd.exe /c start $1
+}
+function clip(){
+    /mnt/c/Windows/System32/clip.exe $1
+}
+
+# Launch a program with graphics into windows system. (plotting inside bash)
+# To display a python tk output, we will need to install [Xming](https://sourceforge.net/projects/xming/) first, and then export the display
+# export DISPLAY=:0
