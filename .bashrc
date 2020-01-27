@@ -184,11 +184,11 @@ unset __conda_setup
 
 # Added a function to find certain file within the current directory
 function findf(){
-    if [[ -z $name ]]; then
+    if [[ -z $1 ]]; then
         echo "name cannot be empty."
         exit 1
     fi
-    find $(pwd) -iname "*$name*"
+    find $(pwd) -iname "*$1*"
 }
 function gen(){
     if [[ -z $1 ]]; then
