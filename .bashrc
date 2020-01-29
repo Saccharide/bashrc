@@ -197,3 +197,10 @@ function gen(){
     fi
     echo -e "# $1\n## Author: **saccharide**\n\nTask\n\`\`\`\n\n\`\`\`\n\n## Approach\n\n## Flag\n\`\`" > "$1.md"
 }
+function mgrep(){
+    if [[ -z $1 ]]; then
+        echo "Search string cannot be empty."
+        exit 1
+    fi
+    ls | xargs -P 0 -I folder grep -ri $1 folder 2> /dev/null
+}
