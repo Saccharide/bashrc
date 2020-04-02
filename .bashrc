@@ -138,6 +138,9 @@ alias dd='dd status=progress'
 alias _='sudo'
 alias old='cd $OLDPWD'
 alias open='xdg-open'
+alias v='vim'
+alias g='cd ~/git'
+alias m='cd ~/Music'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
