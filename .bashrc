@@ -137,11 +137,13 @@ alias la='ls -la'
 alias l='ls -halt'
 alias dd='dd status=progress'
 alias _='sudo'
-alias old='cd $OLDPWD'
+alias old="cd $OLDPWD"
 alias open='xdg-open'
 alias v='vim'
-alias g='cd ~/git'
-alias m='cd ~/Music'
+alias g="cd $HOME/git"
+export G="$HOME/git"
+alias m="cd $HOME/Music"
+export M="$HOME/Music"
 alias p='python'
 alias p3='python3'
 
