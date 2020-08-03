@@ -180,15 +180,7 @@ function pgrep(){
         echo "Search string cannot be empty."
         return
     fi
-    ls | xargs -P 0 -I folder grep --color=always -riI "$1" folder 2> /dev/null
-}
-
-# Windows function
-function start(){
-    /mnt/c/Windows/System32/cmd.exe /c start $1
-}
-function clip(){
-    /mnt/c/Windows/System32/clip.exe $1
+    ls | xargs -P 0 -I folder grep --color=always -riHIs "$1" folder 
 }
 
 # Launch a program with graphics into windows system. (plotting inside bash)
